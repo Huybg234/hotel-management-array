@@ -67,8 +67,16 @@ public class Customer extends Person implements Serializable {
         System.out.println("3.Phòng vip");
         System.out.println("Nhập sự lựa chọn: ");
         boolean check = true;
+        int choice;
         do {
-            int choice = new Scanner(System.in).nextInt();
+            try {
+                choice = new Scanner(System.in).nextInt();
+                check = true;
+            } catch (Exception e) {
+                System.out.println("Không được nhập chữ! Nhập lại: ");
+                check = false;
+                continue;
+            }
             if (choice <= 0 || choice > 3) {
                 System.out.print("Nhập số từ 1 đến 3! Nhập lại: ");
                 check = false;
@@ -97,7 +105,20 @@ public class Customer extends Person implements Serializable {
             }
         } while (!check);
         System.out.println("Nhập số lượng phòng muốn thuê: ");
-        this.roomNumberRent = new Scanner(System.in).nextInt();
+        do {
+            try {
+                this.roomNumberRent = new Scanner(System.in).nextInt();
+                check = true;
+            } catch (Exception e) {
+                System.out.println("Không được nhập ký tự khác ngoài số! Nhập lại: ");
+                check = false;
+                continue;
+            }
+            if (this.roomNumberRent <= 0 ){
+                System.out.println("Số phòng muốn thuê phải lớn hơn 0! Nhập lại:");
+                check = false;
+            }
+        }while (!check);
         Customer.AUTO_ID++;
     }
 

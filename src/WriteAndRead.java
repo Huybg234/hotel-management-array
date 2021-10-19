@@ -1,5 +1,6 @@
 import entity.Customer;
 import entity.Room;
+import service.RoomChoice;
 
 import java.io.*;
 
@@ -41,6 +42,26 @@ public class WriteAndRead {
         }
         for (Customer customer : customerList) {
             System.out.println(customer);
+        }
+    }
+
+    public void writeFileRoomChoice(RoomChoice[] roomChoices){
+        try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream("RoomChoiceList.txt", true))) {
+            outputStream.writeObject(roomChoices);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public void readFileRoomChoice(){
+        RoomChoice[] roomChoices = new RoomChoice[0];
+        try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream("RoomChoiceList.txt"))) {
+            roomChoices = (RoomChoice[]) inputStream.readObject();
+        } catch (IOException | ClassNotFoundException ex) {
+            ex.printStackTrace();
+        }
+        for (RoomChoice roomChoice : roomChoices) {
+            System.out.println(roomChoice);
         }
     }
 }

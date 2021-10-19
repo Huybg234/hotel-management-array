@@ -2,22 +2,32 @@ package service;
 
 import entity.Customer;
 import entity.Room;
-import java.util.Arrays;
 
-public class RoomChoice {
+import java.io.Serializable;
+
+public class RoomChoice implements Serializable {
     private Customer customer;
-    private Room[] rooms;
+    private Room room;
     private int roomQuantity;
     private int dayNumber;
+    private float cost;
 
     public RoomChoice() {
     }
 
-    public RoomChoice(Customer customer, Room[] rooms, int roomQuantity, int dayNumber) {
+    public RoomChoice(Customer customer, Room room, int roomQuantity, int dayNumber) {
         this.customer = customer;
-        this.rooms = rooms;
+        this.room = room;
         this.roomQuantity = roomQuantity;
         this.dayNumber = dayNumber;
+    }
+
+    public float getCost() {
+        return cost;
+    }
+
+    public void setCost(float cost) {
+        this.cost = cost;
     }
 
     public Customer getCustomer() {
@@ -28,12 +38,12 @@ public class RoomChoice {
         this.customer = customer;
     }
 
-    public Room[] getRooms() {
-        return rooms;
+    public Room getRoom() {
+        return room;
     }
 
-    public void setRooms(Room[] rooms) {
-        this.rooms = rooms;
+    public void setRooms(Room room) {
+        this.room = room;
     }
 
     public int getRoomQuantity() {
@@ -56,7 +66,7 @@ public class RoomChoice {
     public String toString() {
         return "ChooseRoom{" +
                 "customer=" + customer +
-                ", rooms=" + Arrays.toString(rooms) +
+                ", rooms=" + room +
                 ", roomQuantity=" + roomQuantity +
                 ", dayNumber=" + dayNumber +
                 '}';
